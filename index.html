@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg,#ffd6e7,#ffeef5);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.container{
+    background:white;
+    width:90%;
+    max-width:500px;
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+h1{
+    margin-bottom:15px;
+}
+
+p{
+    margin-bottom:20px;
+    line-height:1.6;
+}
+
+button{
+    padding:12px 24px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    margin:8px;
+}
+
+.yes{
+    background:#ff4f8b;
+    color:white;
+}
+
+.no{
+    background:#e0e0e0;
+}
+
+.hidden{
+    display:none;
+}
+
+.heart{
+    font-size:80px;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.2);
+    }
+}
+
+.floating-heart{
+    position:fixed;
+    font-size:24px;
+    animation:floatUp 4s linear forwards;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="page1">
+    <h1>Hai Sayang ❤️</h1>
+    <p>
+        Aku punya sesuatu yang ingin aku tanyakan...
+    </p>
+    <button class="yes" onclick="nextPage()">Lanjut</button>
+</div>
+
+<div class="container hidden" id="page2">
+    <h1>🥺</h1>
+    <p>Mau terus bareng aku?</p>
+
+    <button class="yes" onclick="acceptLove()">Mau ❤️</button>
+    <button class="no" id="noBtn">Gamau 😝</button>
+</div>
+
+<div class="container hidden" id="page3">
+    <div class="heart">❤️</div>
+
+    <h1>Makasih!</h1>
+
+    <p>
+        Kamu adalah salah satu hal terbaik yang pernah hadir dalam hidupku.
+        Semoga kita selalu bersama. 💕
+    </p>
+</div>
+
+<script>
+function nextPage(){
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
+}
+
+function acceptLove(){
+    document.getElementById("page2").classList.add("hidden");
+    document.getElementById("page3").classList.remove("hidden");
+
+    setInterval(createHeart,300);
+}
+
+function createHeart(){
+    const heart=document.createElement("div");
+
+    heart.innerHTML="❤️";
+    heart.classList.add("floating-heart");
+
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.bottom="0px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },4000);
+}
+
+const noBtn=document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover",()=>{
+    noBtn.style.position="absolute";
+    noBtn.style.left=Math.random()*80+"vw";
+    noBtn.style.top=Math.random()*80+"vh";
+});
+</script>
+
+</body>
+</html>
